@@ -1,0 +1,28 @@
+{
+    "version": 2,
+    "name": "cc-predict",
+    "builds": [
+      {
+        "src": "app.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": "50mb"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1",
+        "headers": {
+          "cache-control": "s-maxage=31536000,immutable"
+        }
+      },
+      {
+        "src": "/(.*)",
+        "dest": "app.py"
+      }
+    ]
+   
+  }
+  
