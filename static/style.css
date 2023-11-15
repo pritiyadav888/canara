@@ -1,0 +1,135 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, #b3d1dc, #776c6c);
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+h2 {
+    font-size: 24px;
+    color: #12587e;
+    width: 100%;
+    padding: 20px 0;
+    background: #fff; /* Ensure the header has a background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fix the header at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    z-index: 10; /* Ensure it's above other content */
+    text-align: center;
+    margin-bottom: 0; /* Remove margin-bottom */
+}
+form{
+    margin-top: 60px;
+}
+.transaction-details,
+.form-section {
+    width: 90%;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+.form-actions {
+    display: flex;
+    justify-content: center; /* Center the buttons in the container */
+    gap: 20px; /* Space between buttons */
+}
+
+.back-button {
+    background-color: #12587e; /* Different color to distinguish it from the submit button */
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button:hover {
+    background-color: #777;
+}
+.detail {
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+.form-table tr {
+    display: flex;
+}
+
+.form-table td {
+    padding: 15px;
+    flex: 1; /* This ensures that all cells in a row take up equal space */
+
+    box-sizing: border-box; /* This ensures padding is included in the width */
+    display: flex;
+    flex-direction: column;
+}
+input[type="number"],
+.form-input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 4px; /* This gives some space between the label and the input */
+}
+
+
+.submit-button {
+    background-color: #12587e;
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: center; /* Centers the button */
+
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.alert-box {
+    background-color: #cc5923;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 4px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    z-index: 9999;
+}
+
+@media (max-width: 768px) {
+    .transaction-details,
+    .form-section {
+        padding: 15px;
+        width: 90%; /* Adjusted width for mobile */
+    }
+
+    .submit-button {
+        width: 100%; /* Full-width button on mobile */
+        margin-top: 20px;
+    }
+    
+    .form-table td {
+        padding: 10px; /* Adjust padding for mobile */
+    }
+
+    .alert-box {
+        width: 90%; /* Adjusted to fit within the mobile viewport */
+        padding: 10px;
+    }
+}

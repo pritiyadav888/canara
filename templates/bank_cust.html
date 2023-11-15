@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Combined Bank and Customer Interface</title>
+    <link rel="stylesheet" type="text/css" href="static/bank_cust.css">
+
+</head>
+<body>
+    <div class="buttons-container">
+        <button id="request-code">Request Code</button>
+        <button id="model">ML Prediction Demo</button>
+        <button id="fraud-trigger">Fraud Trigger</button>
+        
+    </div>
+    
+    <div id="alerts"></div>
+    <!-- Bank Representative Interface -->
+    <div id="bank-interface">
+        <h2>Bank Representative Interface</h2>
+        
+        <div id="code-generation">
+            
+            <p>Generated Code: <span id="code-display">Waiting for code...</span></p>
+            <p>Time remaining: <span id="countdown-bank">00:30</span></p>
+            
+        </div>
+    </div>
+
+    <!-- Divider -->
+    <hr>
+
+    <!-- Customer Verification Interface -->
+    <div id="customer-interface">
+        <h2>Customer Verification Interface</h2>
+        <div id="code-verification">
+            <p>Verification Code: <span id="code">Waiting for code...</span></p>
+            <p>Time remaining: <span id="countdown-customer">00:30</span></p>
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
+
+    <script src="static/bank_cust.js"></script>
+</body>
+</html>

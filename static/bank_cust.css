@@ -1,0 +1,90 @@
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    background: linear-gradient(to bottom, #b3d1dc, #776c6c);
+    color: #333;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Ensure horizontal centering */
+    padding: 30px; /* Add padding for whitespace */
+}
+
+#bank-interface, #customer-interface {
+    border: 1px solid #e1e1e1;
+    background-color: #fff;
+    padding: 40px; /* Increase padding for more space */
+    margin: 20px 0; /* Uniform margin for top and bottom */
+    width: 70%; /* Adjust width if necessary */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Rounded corners */
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, #f1f1f1, #e1e1e1, #f1f1f1);
+    width: 100%;
+    margin: 40px 0; /* Increase margin for vertical spacing */
+}
+
+.buttons-container {
+    display: flex; /* Use flexbox for easy horizontal alignment */
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 20px; /* Creates space between the buttons */
+    margin-bottom: 20px; /* Space below the button container */
+}
+
+button {
+    background-color: #12587e;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    flex: 1; /* Each button will take up equal space */
+}
+
+button:not(:last-child) {
+    margin-right: 20px; /* Remove this line, as gap property is used */
+}
+
+button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6; /* Increase line height for readability */
+    margin: 10px 0;
+}
+
+#code-display, #code {
+    font-weight: bold;
+    background: #e1e1e1;
+    padding: 10px;
+    border-radius: 4px; /* Match the border radius of the button */
+    display: inline-block; /* Adjust display to handle padding */
+}
+#alerts {
+    width: 70%; /* Match the width of the interfaces */
+    margin: 0 auto 20px; /* Center align and add margin below */
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f8d7da; /* Light red background for the alert */
+    color: #721c24; /* Dark red text to contrast the background */
+    border: 1px solid #f5c6cb; /* Light red border */
+    border-radius: 4px; /* Rounded corners */
+    text-align: center; /* Center the text */
+    font-size: 18px; /* Larger text for visibility */
+    font-weight: bold; /* Make the text bold */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out; /* Smooth transition for appearance */
+    display: none; /* Hide by default, show with JS */
+}
+
