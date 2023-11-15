@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "name": "cc-predict",
     "builds": [
       {
         "src": "app.py",
