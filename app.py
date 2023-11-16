@@ -59,11 +59,13 @@ def send_email():
     subject = "Test Email"
     body = "This is a test email."
     send_email_function(recipient, subject, body)
+
     socketio.emit('fraud alert', {'message': 'A test email has been sent.'})  # Emit alert message
     return "Email sent!"
 
 @app.route('/send-fraud-email')
 def send_fraud_email():
+    print('send-fraud-email route was hit')
     fraud_transaction = {
         'Time': 406,
         'V1': -2.3122265423263,
@@ -102,6 +104,7 @@ def send_fraud_email():
     
     # Send an email with the formatted transaction data
     send_email_function("yadavpriti0210@gmail.com", "Fraud Alert Notification", formatted_transaction_data)
+    print(f'Emitting fraud alert We have detected a potentially fraudulent transaction on your account...... ') 
     socketio.emit('fraud alert', {'message': 'We have detected a potentially fraudulent transaction on your account. Please check email for details.'})  # Emit alert message
     return "Fraud email sent with dummy data!"
 
