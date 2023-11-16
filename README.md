@@ -1,8 +1,9 @@
 <h1 align="center">Integrated Security Framework for Canara Bank</h1>
-
-## Overview
+Hi ![](https://user-images.githubusercontent.com/18350557/176309783-0785949b-9127-417c-8b55-ab5a4333674e.gif)Welcome to this project 
+===================================================================================================================================
 
 This Flask-based web application enhances security measures for Canara Bank's operations. It features a dual-layer security mechanism with Real-Time Fraud Detection and Multi-Factor Authentication (MFA) for call authentication.
+--------------------------------------------------
 
 ## Features
 
@@ -30,29 +31,20 @@ Development of the machine learning model using historical transaction data. The
 
 ### Running the Application
 
-<p align="left">Clone the repository and navigate to the directory:</p>
+#### Clone the repository and navigate to the directory
 
-```sh
 git clone https://github.com/pritiyadav888/canara.git
 cd canara
-
-
-<p align="left"><strong>Install dependencies:</strong></p>
-
-```sh
 pip install -r requirements.txt
-
-<p align="left"><strong>Start the Flask app:</strong></p>
-
 flask run
 # or
 python app.py
 
-### Usage
-- Access the application at `http://127.0.0.1:5000/`.
-- Use `/predict` for fraud detection.
-- Use `/request-code` for MFA during calls.
-- Interactive ML model demo at `/model`.
+* Access the application at `http://127.0.0.1:5000/`.
+* Use `/predict` for fraud detection.
+* Use `/request-code` for MFA during calls.
+* Interactive ML model demo at `/model`.
+
 
 ### Contributing
 
@@ -60,7 +52,7 @@ Contributions are encouraged. Please fork the repo, make changes, and submit a p
 
 ### Contact
 
-- **Priti Yadav**
-- LinkedIn: [Priti Yadav](https://www.linkedin.com/in/priti-yadavml/)
-- Email: [pritiyadav888@gmail.com](mailto:pritiyadav888@gmail.com)
-- Project: [GitHub Repository](https://github.com/pritiyadav888/canara)
+* **Priti Yadav**
+* 🖥️ Connect on [Linkedin](http://www.linkedin.com/in/priti-yadavml/)
+* ✉️  You can contact me at [pritiyadav888@gmail.com](mailto:pritiyadav888@gmail.com)
+* Project: [GitHub Repository](https://github.com/pritiyadav888/canara)
