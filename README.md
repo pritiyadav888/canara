@@ -33,13 +33,12 @@ Development of the machine learning model using historical transaction data. The
 
 #### Clone the repository and navigate to the directory
 
-git clone https://github.com/pritiyadav888/canara.git
-cd canara
-pip install -r requirements.txt
-flask run
-# or
-python app.py
-
+* git clone https://github.com/pritiyadav888/canara.git
+* cd canara
+* pip install -r requirements.txt
+* flask run
+##### or
+* python app.py
 * Access the application at `http://127.0.0.1:5000/`.
 * Use `/predict` for fraud detection.
 * Use `/request-code` for MFA during calls.
