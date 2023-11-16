@@ -32,7 +32,10 @@ def predict():
 
 @app.route('/')
 def home():
+    # Emit a test fraud alert
+    socketio.emit('fraud alert', {'message': 'Test alert'})
     return render_template('bank_cust.html')
+
 @app.route('/model')
 def go_to_index():
     return render_template('index.html')
@@ -65,49 +68,52 @@ def send_email():
 
 @app.route('/send-fraud-email')
 def send_fraud_email():
-    print('send-fraud-email route was hit')
-    fraud_transaction = {
-        'Time': 406,
-        'V1': -2.3122265423263,
-        'V2': 1.95199201064158,
-        'V3': -1.60985073229769,
-        'V4': 3.9979055875468,
-        'V5': -0.5221878646677,
-        'V6': -1.4265453192059,
-        'V7': -2.5373873062458,
-        'V8': 1.39165724829804,
-        'V9': -2.7700892771943,
-        'V10': -2.7722721446592,
-        'V11': 3.20203320709635,
-        'V12': -2.89990738849473,
-        'V13': -0.5952218813249,
-        'V14': -4.28925378244217,
-        'V15': 0.3897241202746,
-        'V16': -1.14074717980657,
-        'V17': -2.83005567450437,
-        'V18': -0.0168224681806,
-        'V19': 0.41695570503798,
-        'V20': 0.12691055906147,
-        'V21': 0.51723237086176,
-        'V22': -0.0350493686052,
-        'V23': -0.46521107618239,
-        'V24': 0.3201981985144,
-        'V25': 0.0445191674733,
-        'V26': 0.1778397982841,
-        'V27': 0.26114500256722,
-        'V28': -0.1432758746982,
-        'Amount': 0.00
-    }
-    
-    # Convert the keys to a more readable format
-    formatted_transaction_data = {format_key(k): v for k, v in fraud_transaction.items()}
-    
-    # Send an email with the formatted transaction data
-    send_email_function("yadavpriti0210@gmail.com", "Fraud Alert Notification", formatted_transaction_data)
-    print(f'Emitting fraud alert We have detected a potentially fraudulent transaction on your account...... ') 
-    socketio.emit('fraud alert', {'message': 'We have detected a potentially fraudulent transaction on your account. Please check email for details.'})  # Emit alert message
-    return "Fraud email sent with dummy data!"
-
+    try:
+        print('send-fraud-email route was hit')
+        fraud_transaction = {
+            'Time': 406,
+            'V1': -2.3122265423263,
+            'V2': 1.95199201064158,
+            'V3': -1.60985073229769,
+            'V4': 3.9979055875468,
+            'V5': -0.5221878646677,
+            'V6': -1.4265453192059,
+            'V7': -2.5373873062458,
+            'V8': 1.39165724829804,
+            'V9': -2.7700892771943,
+            'V10': -2.7722721446592,
+            'V11': 3.20203320709635,
+            'V12': -2.89990738849473,
+            'V13': -0.5952218813249,
+            'V14': -4.28925378244217,
+            'V15': 0.3897241202746,
+            'V16': -1.14074717980657,
+            'V17': -2.83005567450437,
+            'V18': -0.0168224681806,
+            'V19': 0.41695570503798,
+            'V20': 0.12691055906147,
+            'V21': 0.51723237086176,
+            'V22': -0.0350493686052,
+            'V23': -0.46521107618239,
+            'V24': 0.3201981985144,
+            'V25': 0.0445191674733,
+            'V26': 0.1778397982841,
+            'V27': 0.26114500256722,
+            'V28': -0.1432758746982,
+            'Amount': 0.00
+        }
+        
+        # Convert the keys to a more readable format
+        formatted_transaction_data = {format_key(k): v for k, v in fraud_transaction.items()}
+        
+        # Send an email with the formatted transaction data
+        send_email_function("yadavpriti0210@gmail.com", "Fraud Alert Notification", formatted_transaction_data)
+        print(f'Emitting fraud alert We have detected a potentially fraudulent transaction on your account...... ') 
+        socketio.emit('fraud alert', {'message': 'We have detected a potentially fraudulent transaction on your account. Please check your email for details.'})
+        return "Fraud email sent with dummy data!"
+    except Exception as e:
+        print(f'Error in /send-fraud-email route: {e}')
+        return jsonify({'error': str(e)}), 500
 
 def create_email_body(transaction_data):
     # Start the HTML email body
