@@ -11,10 +11,10 @@
         window.onload = function () {
             const table = document.querySelector('.form-table');
             let rows = [];
-    for (let i = 0; i < 4; i++) {
-        rows.push(document.createElement('tr'));
-        table.appendChild(rows[i]);
-    }
+            for (let i = 0; i < 4; i++) {
+                rows.push(document.createElement('tr'));
+                table.appendChild(rows[i]);
+            }
             const initialValues = {
                 Time: 406,
                 V1: -2.312227,
@@ -48,34 +48,34 @@
                 Amount: 0
             };
             let cellCount = 0;
-    for (const fieldName in initialValues) {
-        if (initialValues.hasOwnProperty(fieldName)) {
-            const value = initialValues[fieldName];
-            if (fieldName === 'Time' || fieldName === 'Amount') {
-                document.getElementById(fieldName.toLowerCase()).value = value;
-            } else {
-                let cell = document.createElement('td');
-                let label = document.createElement('label');
-                let input = document.createElement('input');
-                label.setAttribute('for', fieldName.toLowerCase());
-                label.textContent = `${fieldName}:`;
-                input.setAttribute('type', 'number');
-                input.setAttribute('step', 'any');
-                input.setAttribute('id', fieldName.toLowerCase());
-                input.setAttribute('name', fieldName.toLowerCase());
-                input.value = value;
-                
-                cell.appendChild(label);
-                cell.appendChild(input);
-                
-                // Append the cell to the appropriate row based on cellCount
-                let rowIndex = Math.floor(cellCount / 7);
-                rows[rowIndex].appendChild(cell);
-                cellCount++;
+            for (const fieldName in initialValues) {
+                if (initialValues.hasOwnProperty(fieldName)) {
+                    const value = initialValues[fieldName];
+                    if (fieldName === 'Time' || fieldName === 'Amount') {
+                        document.getElementById(fieldName.toLowerCase()).value = value;
+                    } else {
+                        let cell = document.createElement('td');
+                        let label = document.createElement('label');
+                        let input = document.createElement('input');
+                        label.setAttribute('for', fieldName.toLowerCase());
+                        label.textContent = `${fieldName}:`;
+                        input.setAttribute('type', 'number');
+                        input.setAttribute('step', 'any');
+                        input.setAttribute('id', fieldName.toLowerCase());
+                        input.setAttribute('name', fieldName.toLowerCase());
+                        input.value = value;
+
+                        cell.appendChild(label);
+                        cell.appendChild(input);
+
+                        // Append the cell to the appropriate row based on cellCount
+                        let rowIndex = Math.floor(cellCount / 7);
+                        rows[rowIndex].appendChild(cell);
+                        cellCount++;
+                    }
+                }
             }
-        }
-    }
-};
+        };
 
         async function submitForm(event) {
             event.preventDefault();
@@ -92,21 +92,22 @@
 
             let result = await response.json();
             const messageElement = document.getElementById('prediction-message');
+            let alertMessage;
 
             if (result.prediction === 1) {
-                const alertMessage = 'Transaction is potentially fraudulent.';
-                showAlert(alertMessage, 15000); // Display the alert for 15 seconds (15,000 milliseconds)
+                alertMessage = 'Transaction is potentially fraudulent.';
                 messageElement.style.backgroundColor = '#f44336'; // Set message background color
             } else {
-                const alertMessage = 'Transaction is likely legitimate.';
-                showAlert(alertMessage, 15000); // Display the alert for 15 seconds (15,000 milliseconds)
+                alertMessage = 'Transaction is likely legitimate.';
                 messageElement.style.backgroundColor = '#12587e'; // Set message background color
             }
 
             // Show the prediction message
             messageElement.textContent = alertMessage;
             messageElement.style.display = 'block';
+            showAlert(alertMessage, 15000); // Display the alert for 15 seconds
         }
+
 
         function showAlert(message, duration) {
             const alertBox = document.createElement('div');
@@ -119,8 +120,8 @@
             }, duration);
         }
         function goBack() {
-    window.location.href = '/'; // Navigate to the home route
-}
+            window.location.href = '/'; // Navigate to the home route
+        }
 
     </script>
 </head>
@@ -141,7 +142,7 @@
                 </div>
             </div>
         </div>
-        
+
 
         <div class="form-section">
             <!-- <div class="form-title">Transaction Characteristics</div> -->
@@ -154,7 +155,7 @@
             <input type="submit" value="Check Transaction" class="submit-button">
             <button type="button" onclick="goBack()" class="back-button">Back</button>
         </div>
-        
+
     </form>
     <div id="prediction-message" class="alert-box" style="display: none;"></div>
 </body>

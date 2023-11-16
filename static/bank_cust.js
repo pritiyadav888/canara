@@ -24,7 +24,7 @@ document.getElementById('model').addEventListener('click', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect(window.location.origin);
 
     var requestButton = document.getElementById('request-code');
     var bankCodeDisplay = document.getElementById('code-display');
