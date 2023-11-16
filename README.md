@@ -1,8 +1,9 @@
-<h1 align="center">Integrated Security Framework for Canara Bank</h1>
-Hi ![](https://user-images.githubusercontent.com/18350557/176309783-0785949b-9127-417c-8b55-ab5a4333674e.gif)Welcome to this project 
-===================================================================================================================================
+# Integrated Security Framework for Canara Bank
+
+Hi! ![waving hand](https://user-images.githubusercontent.com/18350557/176309783-0785949b-9127-417c-8b55-ab5a4333674e.gif) Welcome to this project
 
 This Flask-based web application enhances security measures for Canara Bank's operations. It features a dual-layer security mechanism with Real-Time Fraud Detection and Multi-Factor Authentication (MFA) for call authentication.
+
 --------------------------------------------------
 
 ## Features
@@ -36,9 +37,7 @@ Development of the machine learning model using historical transaction data. The
 * git clone https://github.com/pritiyadav888/canara.git
 * cd canara
 * pip install -r requirements.txt
-* flask run
-##### or
-* python app.py
+* flask run or python app.py
 * Access the application at `http://127.0.0.1:5000/`.
 * Use `/predict` for fraud detection.
 * Use `/request-code` for MFA during calls.
