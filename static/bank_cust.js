@@ -25,7 +25,9 @@ document.getElementById('model').addEventListener('click', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     var socket = io.connect(window.location.origin, { transports: ['websocket'] });  // Use WebSocket as transport
-
+    socket.on('connect', function() {
+        console.log('Connected to socket.io server');
+    });
     var requestButton = document.getElementById('request-code');
     var bankCodeDisplay = document.getElementById('code-display');
     var customerCodeDisplay = document.getElementById('code');
@@ -62,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Listen for fraud alerts specific to the logged-in customer
     socket.on('fraud alert', function (alert) {
+        console.log('Fraud alert received:', alert.message);
         const alertsDiv = document.getElementById('alerts');
         if (alertsDiv) {
             // Make the alerts div visible
