@@ -16,19 +16,30 @@ socketio = SocketIO(app, cors_allowed_origins="*")  # Allow CORS
 # Load your trained model
 model = tf.keras.models.load_model('best_fraud_detection_model.h5')
 
+# Define required features
+required_features = ['Time'] + [f'V{i}' for i in range(1, 29)] + ['Amount']
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
         transaction_data = request.json
-        prediction = model.predict([list(transaction_data.values())])
 
-        if prediction[0] == 1:  # Assuming '1' indicates a fraudulent prediction
+        # Check for missing features
+        missing_features = [feature for feature in required_features if feature not in transaction_data]
+        if missing_features:
+            return jsonify({'error': f'Missing features: {missing_features}'}), 400
+
+        # Prepare data for prediction
+        input_data = [transaction_data[feature] for feature in required_features]
+        prediction = model.predict([input_data])
+
+        # Handle the prediction result
+        if prediction[0] == 1:
             socketio.emit('fraud alert', {'message': 'A fraudulent transaction was detected.'})
-
         return jsonify({'prediction': prediction[0]})
 
     except Exception as e:
-        return jsonify({'error': str(e)}), 500  # Return a JSON response with the error message and a 500 status code for internal server error
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/')

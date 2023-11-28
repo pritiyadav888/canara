@@ -79,35 +79,45 @@
 
         async function submitForm(event) {
             event.preventDefault();
-            let time = document.getElementById('time').value;
-            let amount = document.getElementById('amount').value;
 
+            // Collect values for all features
+            let formData = {
+                'Time': parseFloat(document.getElementById('time').value),
+                'Amount': parseFloat(document.getElementById('amount').value)
+            };
+
+            // Collect values for features V1 to V28
+            for (let i = 1; i <= 28; i++) {
+                formData[`V${i}`] = parseFloat(document.getElementById(`v${i}`).value);
+            }
+
+            // Send the POST request with complete data
             let response = await fetch('/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ 'Time': time, 'Amount': amount })
+                body: JSON.stringify(formData)
             });
 
             let result = await response.json();
             const messageElement = document.getElementById('prediction-message');
             let alertMessage;
 
+            // Set the alert message based on the prediction result
             if (result.prediction === 1) {
                 alertMessage = 'Transaction is potentially fraudulent.';
-                messageElement.style.backgroundColor = '#f44336'; // Set message background color
+                messageElement.style.backgroundColor = '#f44336'; // Red background for fraud alert
             } else {
                 alertMessage = 'Transaction is likely legitimate.';
-                messageElement.style.backgroundColor = '#12587e'; // Set message background color
+                messageElement.style.backgroundColor = '#12587e'; // Blue background for legitimate
             }
 
-            // Show the prediction message
+            // Display the prediction message
             messageElement.textContent = alertMessage;
             messageElement.style.display = 'block';
             showAlert(alertMessage, 15000); // Display the alert for 15 seconds
         }
-
 
         function showAlert(message, duration) {
             const alertBox = document.createElement('div');
@@ -119,6 +129,7 @@
                 alertBox.remove();
             }, duration);
         }
+
         function goBack() {
             window.location.href = '/'; // Navigate to the home route
         }
@@ -147,7 +158,7 @@
         <div class="form-section">
             <!-- <div class="form-title">Transaction Characteristics</div> -->
             <table class="form-table">
-                <!-- Fields for PCA features will be created here by JavaScript -->
+
             </table>
         </div>
 
