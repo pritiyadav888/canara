@@ -30,17 +30,22 @@ def predict():
             return jsonify({'error': f'Missing features: {missing_features}'}), 400
 
         # Prepare data for prediction
-        input_data = [transaction_data[feature] for feature in required_features]
-        prediction = model.predict([input_data])
+        input_data = np.array([transaction_data[feature] for feature in required_features]).reshape(1, -1)
+        prediction = model.predict(input_data)
+
+        # Convert prediction to list (if there are multiple predictions) or to scalar.
+        prediction_list = prediction.tolist()  # Convert to list
+        prediction_result = prediction_list[0][0] if prediction.shape[1] == 1 else prediction_list
 
         # Handle the prediction result
-        if prediction[0] == 1:
+        fraud_detected = prediction_result > 0.5  # Assuming a threshold of 0.5 for binary classification
+        if fraud_detected:
             socketio.emit('fraud alert', {'message': 'A fraudulent transaction was detected.'})
-        return jsonify({'prediction': prediction[0]})
+
+        return jsonify({'prediction': prediction_result})
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
 
 @app.route('/')
 def home():
