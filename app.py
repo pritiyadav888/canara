@@ -1,14 +1,23 @@
-from flask import Flask, request, jsonify, render_template, redirect
-from flask_socketio import SocketIO
+# Standard library imports
+import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import pyotp
-import os
-import joblib
-from dotenv import load_dotenv
-import tensorflow as tf
 
+# Third-party imports
+from flask import Flask, request, jsonify, render_template
+from flask_socketio import SocketIO
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import classification_report, confusion_matrix
+from imblearn.over_sampling import SMOTE
+import tensorflow as tf
+from tensorflow.keras import layers, models
+from tensorflow.keras.utils import to_categorical
+import pyotp
+from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")  # Allow CORS
