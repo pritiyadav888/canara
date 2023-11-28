@@ -81,9 +81,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     var fraudTriggerButton = document.getElementById('fraud-trigger'); // Select the button by its ID
-fraudTriggerButton.addEventListener('click', function() {
-    // Immediately display the fraud alert message
-    const alertsDiv = document.getElementById('alerts');
+    fraudTriggerButton.addEventListener('click', function() {
+        const alertsDiv = document.getElementById('alerts');
     if (alertsDiv) {
         alertsDiv.textContent = "We detected a fraud transaction. Please check your email for details.";
         alertsDiv.style.display = 'block';
@@ -92,21 +91,20 @@ fraudTriggerButton.addEventListener('click', function() {
             alertsDiv.style.display = 'none';
         }, 20000); // 20000 milliseconds = 20 seconds
     }
-
-    // Send a GET request to the /send-fraud-email endpoint
-    fetch('/send-fraud-email')
-        .then(response => {
-            if (response.ok) {
-                return response.text(); // or `response.json()` if your server sends back JSON
-            }
-            throw new Error('Network response was not ok.');
-        })
-        .then(text => {
-            console.log('Fraud email sent:', text); // Log the success response from the server
-        })
-        .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
-        });
-});
+        // Send a GET request to the /send-fraud-email endpoint
+        fetch('/send-fraud-email')
+            .then(response => {
+                if (response.ok) {
+                    return response.text(); // or `response.json()` if your server sends back JSON
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(text => {
+                console.log('Fraud email sent:', text); // Log the success response from the server
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+    });
 
 });

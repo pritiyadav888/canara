@@ -13,7 +13,7 @@ app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")  # Allow CORS
 
 # Load your trained model
-model = joblib.load('best_model.pkl')
+model = tf.keras.models.load_model('best_fraud_detection_model.h5')
 
 @app.route('/predict', methods=['POST'])
 def predict():
