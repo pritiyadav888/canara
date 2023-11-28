@@ -3,6 +3,11 @@ Flask_SocketIO==5.3.6
 joblib==1.3.2
 pyotp==2.9.0
 python-dotenv==1.0.0
-tensorflow==2.15.0
+tensorflow-cpu
+Flask
+Flask_SocketIO
+joblib
+pyotp
+python-dotenv
 scikit-learn
 gunicorn
