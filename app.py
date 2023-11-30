@@ -66,6 +66,9 @@ def home():
 def go_to_index():
     return render_template('index.html')
 
+@app.route('/report')
+def report():
+    return render_template('Report.html')
 
 @socketio.on('connection')
 def handle_connection():

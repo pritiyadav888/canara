@@ -134,6 +134,10 @@
         function goBack() {
             window.location.href = '/'; // Navigate to the home route
         }
+        function goReport() {
+    window.location.href = '/report'; // Navigate to the report route
+}
+
 
     </script>
 </head>
@@ -164,6 +168,7 @@
         </div>
 
         <div class="form-actions">
+            <button type="button" onclick="goReport()" class="back-button">Data Insight</button>
             <input type="submit" value="Check Transaction" class="submit-button">
             <button type="button" onclick="goBack()" class="back-button">Back</button>
         </div>
